@@ -18,12 +18,15 @@ class Timeline extends React.Component {
     	let endWidth = (this.props.lastEndTime - this.props.endTime) * 100 / allTime;
     	console.log (tWidth);
     	timetd.style.width = '100px';
-    	timeline.style.padding = '20px ' + endWidth+'px '+'10px ' +startWidth+'px'; 
+        timetd.style.padding = '0px';
+        timeline.style.width = tWidth+'px';
+        timeline.style.height = '10px';
         timeline.style.background = 'red';
+        timeline.style.margin= '0px '+endWidth+'px 0px '+startWidth+'px';
     }
     render() {
         return (
-        	<td ref='timetd'><span ref="timeline"></span></td>
+        	<td ref='timetd'><div ref="timeline"></div></td>
         )
     }
 }
