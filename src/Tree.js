@@ -64,11 +64,10 @@ class Tree extends React.Component {
     }
     render() {
     	let tree=this._loadTree();
-    	console.log(tree);
         return (
-        	<ul>
-        	{tree.map(element =>(<TreeView node={element}/>))}
-        	</ul>
+        	<table>
+        			{tree.map((element,index) =>(<TreeView {...this.props} key={index} node={element}/>))}
+        	</table>
         )
     }
 }
