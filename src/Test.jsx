@@ -235,6 +235,14 @@ let props={
 		parameter:" C:\\Windows\\system32\\igfxEM.exe\" -Embedding",
 		startTime:"1468468921",
 		endTime:"1468468996"
+		},
+		{
+		id:"21",
+		name:"igfxEM.exe",
+		signature:"Sysinternals",
+		parameter:" C:\\Windows\\system32\\igfxEM.exe\" -Embedding",
+		startTime:"1468468923",
+		endTime:"1468468998"
 		}
 	]
 }
