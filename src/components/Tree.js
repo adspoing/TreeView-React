@@ -27,12 +27,12 @@ class Tree extends React.Component {
     }
    
     _loadTree(){
-    	let data=this.props.data;
+    	let processTree=this.props.processTree;
     	let firstLevel = [];
-    	for(let x in data){
-    		if(data[x].source== ""){
+    	for(let x in processTree){
+    		if(processTree[x].source== ""){
     			firstLevel.push({
-    				id:data[x].id,
+    				id:processTree[x].id,
     				children:[]
     			})
     		}
@@ -44,11 +44,11 @@ class Tree extends React.Component {
   		while(prevLevel.length!=0){
   			var len=prevLevel.length;
   			for(var i=0;i<len;i++){
-  				    for(var x=0;x<data.length;x++){
-  				    	if(data[x].source == prevLevel[i].id)
+  				    for(var x=0;x<processTree.length;x++){
+  				    	if(processTree[x].source == prevLevel[i].id)
 		    			{
 		    				let tmpObj={
-			    					id:data[x].id,
+			    					id:processTree[x].id,
 			    					children:[]
 			    				};
 		    				if(prevLevel[i].children.contains(tmpObj)==false)

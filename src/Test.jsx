@@ -1,112 +1,12 @@
 import React from 'react';
-import Process from './Process.js'
-// let props = {
-// 	data:[
-// 	  {
-// 	  	id:"a",
-// 	  	source:"",
-// 	  	target:"b"
-// 	  },
-// 	  {
-// 	  	id:"e",
-// 	  	source:"",
-// 	  	target:"f"
-// 	  },
-// 	  {
-// 		id:"b",
-// 	    source:"a",
-// 	    target:"c"
-// 	  },
-// 	  {
-// 	  	id:"b",
-// 	    source:"a",
-// 	    target:"d"
-// 	  },
-// 	  {
-// 	  	id:"f",
-// 		source:"e",
-// 		target:"g"
-// 	  },
-// 	  {
-// 	  	id:"f",
-// 	  	source:"e",
-// 	  	target:"g"
-// 	  },
-// 	  {
-// 	  	id:"c",
-// 	  	source:"b",
-// 	  	target:"l"
-// 	  },
-// 	  {
-// 	  	id:"c",
-// 	  	source:"b",
-// 	  	target:"m"
-// 	  },
-// 	  {
-// 	  	id:"d",
-// 	  	source:"b",
-// 	  	target:"j"
-// 	  },
-// 	  {
-// 	  	id:"d",
-// 	  	source:"b",
-// 	  	target:"k"
-// 	  },
-// 	  {
-// 	  	id:"g",
-// 	  	source:"f",
-// 	  	target:"y"
-// 	  },
-// 	  {
-// 	  	id:"g",
-// 	  	source:"f",
-// 	  	target:"z"
-// 	  },
-// 	  {
-// 	  	id:"h",
-// 	  	source:"f",
-// 	  	target:""
-// 	  },
-// 	   {
-// 	  	id:"l",
-// 	  	source:"c",
-// 	  	target:""
-// 	  },
-// 	  {
-// 	  	id:"m",
-// 	  	source:"c",
-// 	  	target:""
-// 	  },
-// 	  {
-// 	  	id:"j",
-// 	  	source:"d",
-// 	  	target:""
-// 	  },
-// 	   {
-// 	  	id:"k",
-// 	  	source:"d",
-// 	  	target:""
-// 	  },
-// 	  {
-// 	  	id:"y",
-// 	  	source:"g",
-// 	  	target:""
-// 	  },
-// 	  {
-// 	  	id:"z",
-// 	  	source:"g",
-// 	  	target:""
-// 	  },
-// 	  {
-// 	  	id:"q",
-// 	  	source:"",
-// 	  	target:""
-// 	  }
-// 	]
-// }
-
+import Process from './components/Process.js';
+import { render } from 'react-dom';
+import store from './stores/store.js';
+import {Provider} from 'react-redux';
+import Tabs from './components/tabs';
+import BodyScrollTable from './components/ScrollTable.js'
 let props={
-	data:[
+	processTree:[
 	{
 		id:"424",
 		source:"",
@@ -121,6 +21,11 @@ let props={
 		id:"1424",
 		source:"1213",
 		target:"5534"
+	},	
+	{
+		id:"1424",
+		source:"1213",
+		target:"646"
 	},	
 	{
 		id:"5534",
@@ -161,9 +66,14 @@ let props={
 		id:"21",
 		source:"1424",
 		target:""
-	},		
+	},	
+	{
+		id:"1080",
+		source:"",
+		target:""
+	}	
 	],
-	data2:[
+	processInfo:[
 		{
 		id:"424",
 		name:"wininit.exe",
@@ -243,8 +153,124 @@ let props={
 		parameter:" C:\\Windows\\system32\\igfxEM.exe\" -Embedding",
 		startTime:"1468468923",
 		endTime:"1468468998"
+		},
+		{
+		id:"1080",
+		name:"wechat.exe",
+		signature:"Sysinternals",
+		parameter:" C:\\Windows\\system32\\igfxEM.exe\" -Embedding",
+		startTime:"1468468960",
+		endTime:"1468468970"
 		}
 	]
+}
+
+
+
+let tabs=[{
+    Name: 'origin',
+    Des: '进程原始事件'
+},
+{
+    Name: 'fileChange',
+    Des: '文件变更'
+},
+{
+    Name: 'access',
+    Des: '网络访问'
+},
+{
+    Name: 'regeditChange',
+    Des: '进程原始事件'
+},
+{
+    Name: 'keyAction',
+    Des: '关键行为'
+}]
+
+let tableHead={
+	head :{
+		'origin':[
+			{
+				Name:'eventType',
+				Des:'事件类型'
+			},
+			{
+				Name:'dataInfo',
+				Des:'数据详情'
+			},
+			{
+				Name:'occurTime',
+				Des:'发生时间'	
+			}
+		],
+		'fileChange':[
+			{
+				Name:'fileName',
+				Des:'文件名'
+			},
+			{
+				Name:'fileMD5',
+				Des:'文件MD5'
+			},
+			{
+				Name:'fileChangeMethod',
+				Des:'文件变更触发类型'
+			},
+			{
+				Name:'fileChangeType',
+				Des:'文件变更方式'
+			},
+			{
+				Name:'occurTime',
+				Des:'发生时间'
+			}
+		],
+		'access':[
+			{
+				Name:'target',
+				Des:'访问目标'
+			},
+			{
+				Name:'process',
+				Des:'访问进程'
+			},
+			{
+				Name:'cmd',
+				Des:'运行命令'
+			},
+			{
+				Name:'netacess',
+				Des:'网络访问'
+			},
+			{
+				Name:'occurTime',
+				Des:'发生时间'
+			}
+		],
+		'regeditChange':[
+			{
+				Name:'location',
+				Des:'注册表位置'
+			},
+			{
+				Name:'changeType',
+				Des:'变更方式'
+			},
+			{
+				Name:'name',
+				Des:'名称'
+			},
+			{
+				Name:'changeResult',
+				Des:'变更结果'
+			},
+			{
+				Name:'changeTime',
+				Des:'变更次数'
+			}
+		]
+	}
 }
 class Test extends React.Component {
     constructor(props) {
@@ -253,9 +279,14 @@ class Test extends React.Component {
     }
     render() {
         return (
-        	<div>
-        		<Process {...props}/>
-        	</div>
+        	<Provider store={store}>
+	        	<div>
+	        		<Process {...props}/>
+	        		<Tabs tabs={tabs}/>
+					<BodyScrollTable tableHead={tableHead}
+									 tabs={tabs}/>
+                </div>
+        	</Provider>
         )
     }
 }

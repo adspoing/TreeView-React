@@ -8,7 +8,7 @@ class TreeView extends React.Component {
         this.level=0;
     }
     _getName(id){
-    	let arr=this.props.data2;
+    	let arr=this.props.processInfo;
     	for(let x in arr){
     		if(arr[x].id == id)
     			return arr[x].name;
@@ -16,7 +16,7 @@ class TreeView extends React.Component {
     	return "";
     }
     _getSign(id){
-    	let arr=this.props.data2;
+    	let arr=this.props.processInfo;
     	for(let x in arr){
     		if(arr[x].id == id)
     			return arr[x].signature;
@@ -24,7 +24,7 @@ class TreeView extends React.Component {
     	return "";
     }
     _getParameter(id){
-    	let arr=this.props.data2;
+    	let arr=this.props.processInfo;
     	for(let x in arr){
     		if(arr[x].id == id)
     			return arr[x].parameter;
@@ -32,7 +32,7 @@ class TreeView extends React.Component {
     	return "";
     }
     _getStartTime(id){
-    	let arr=this.props.data2;
+    	let arr=this.props.processInfo;
     	let time = "";
     	for(let x in arr){
     		if(arr[x].id == id)
@@ -46,7 +46,7 @@ class TreeView extends React.Component {
     	return newDate.toLocaleString();
     }
     _getTimeStart(id){
-    	let arr=this.props.data2;
+    	let arr=this.props.processInfo;
     	for(let x in arr){
     		if(arr[x].id == id)
     			return arr[x].startTime;
@@ -54,7 +54,7 @@ class TreeView extends React.Component {
     	return "";
     }
      _getEndTime(id){
-    	let arr=this.props.data2;
+    	let arr=this.props.processInfo;
     	let time = "";
     	for(let x in arr){
     		if(arr[x].id == id)
@@ -68,7 +68,7 @@ class TreeView extends React.Component {
     	return newDate.toLocaleString();
     }
      _getTimeEnd(id){
-    	let arr=this.props.data2;
+    	let arr=this.props.processInfo;
     	for(let x in arr){
     		if(arr[x].id == id)
     			return arr[x].endTime;
@@ -76,7 +76,7 @@ class TreeView extends React.Component {
     	return "";
     }
     _getEarlyTime(){
-    	let arr=this.props.data2;
+    	let arr=this.props.processInfo;
     	let min=4070883661; //2099年
     	for(let x in arr){
     		if(arr[x].startTime<min){
@@ -86,7 +86,7 @@ class TreeView extends React.Component {
     	return min;
     }
     _getLastTime(){
-    	let arr=this.props.data2;
+    	let arr=this.props.processInfo;
     	let max=0; //2099年
     	for(let x in arr){
     		if(arr[x].endTime>max){
@@ -119,8 +119,6 @@ class TreeView extends React.Component {
     }
     render() {
     	var children;
-    	console.log(this._getEarlyTime());
-    	console.log(this._getLastTime());
     	this.preorder(this.props.node,0);
         return (
         	<tbody>

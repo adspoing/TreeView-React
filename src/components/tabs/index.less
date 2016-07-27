@@ -1,0 +1,36 @@
+@tabs_h: 40px;
+.tabs-wrapper{
+    height: @tabs_h;
+    line-height: @tabs_h;
+    li{
+        font-size: 14px;
+        display: inline-block;
+        height: @tabs_h;
+        padding: 0 1em;
+        // border-right: solid 1px #c8c8c8;
+        position: relative;
+        span{
+            height: @tabs_h;
+            line-height: @tabs_h;
+            display: inline-block;
+            box-sizing: border-box;
+            border-bottom: solid 2px #FFF;
+        }
+        &:after{
+            content: '';
+            width: 1px;
+            height: 1em;
+            background: #c8c8c8;
+            margin: -0.5em 0 0 0;
+            position: absolute;
+            top: 50%;
+            right: 0;
+        }
+        &.active span{
+            border-bottom: solid 2px #92c05c;
+        }
+        &:last-child:after{
+            display: none;
+        }
+    }
+}

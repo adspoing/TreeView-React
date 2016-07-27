@@ -16,7 +16,6 @@ class Timeline extends React.Component {
     	let tWidth = Time * 100 / allTime; 
     	let startWidth = (this.props.startTime - this.props.earlyStartTime) * 100 / allTime;
     	let endWidth = (this.props.lastEndTime - this.props.endTime) * 100 / allTime;
-    	console.log (tWidth);
     	timetd.style.width = '100px';
         timetd.style.padding = '0px';
         timeline.style.width = tWidth+'px';
