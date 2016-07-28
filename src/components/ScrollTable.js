@@ -2,6 +2,7 @@ import React from 'react';
 import BodyScrollTable from './BodyScrollTable'
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
+import {fetchThing} from '../actions/actions.js'
 
 class ScrollTable extends React.Component {
     constructor(props) {

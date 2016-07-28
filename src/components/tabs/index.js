@@ -1,11 +1,13 @@
 import React, { PropTypes } from 'react'
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {changetab} from '../../actions/actions.js'
+import {changetab, fetchThing} from '../../actions/actions.js'
+
 class Tabs extends React.Component {
 
     tabChange(tab) {
         this.props.actions.changetab(tab);
+        this.props.actions.fetchThing();
     }
 
     render () {
@@ -39,7 +41,8 @@ function mapStateToProps (state){
 function mapDispatchToProps (dispatch){
     return {
         actions: bindActionCreators({
-            changetab
+            changetab,
+            fetchThing
         },dispatch)
     }
 }

@@ -10,12 +10,20 @@
 	<script src="http://mockjs.com/dist/mock.js"></script>
     <script src="dist/main.js"></script>
     <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
-    <script>
+  <!--   <script>
     	Mock.mock('http://g.cn', {
 		    'name'     : '@name',
 		    'age|1-100': 100,
 		    'color'    : '@color'
 		});
-    </script>
+			$.ajax({
+		    url: 'http://g.cn',
+		    dataType:'json'
+		    }).done(function(data, status, xhr){
+		    console.log(
+		    JSON.stringify(data, null, 4)
+		    )    
+		});
+    </script> -->
 </body>
 </html>
