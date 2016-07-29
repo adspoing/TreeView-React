@@ -3,7 +3,7 @@ import Process from './components/Process.js';
 import { render } from 'react-dom';
 import store from './stores/store.js';
 import {Provider} from 'react-redux';
-import Tabs from './components/tabs';
+import Tabs from './components/tabController.js';
 import BodyScrollTable from './components/ScrollTable.js'
 let props={
 	processTree:[
@@ -284,6 +284,7 @@ class Test extends React.Component {
 	        		<Process {...props}/>
 	        		<Tabs tabs={tabs}/>
 					<BodyScrollTable tableHead={tableHead}
+									tableBody={123}
 									 tabs={tabs}/>
                 </div>
         	</Provider>

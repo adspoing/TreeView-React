@@ -1,13 +1,9 @@
 import React, { PropTypes } from 'react'
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
-import {changetab, fetchThing} from '../../actions/actions.js'
 
 class Tabs extends React.Component {
 
     tabChange(tab) {
-        this.props.actions.changetab(tab);
-        this.props.actions.fetchThing();
+        this.props.onChange(tab);
     }
 
     render () {
@@ -32,24 +28,11 @@ class Tabs extends React.Component {
     }
 }
 
-function mapStateToProps (state){
-    return {
-        activeTab: state.activeTab
-    }
-}
 
-function mapDispatchToProps (dispatch){
-    return {
-        actions: bindActionCreators({
-            changetab,
-            fetchThing
-        },dispatch)
-    }
-}
 Tabs.defaultProps = {
     tabs: [],
     activeTab: null,
     onChange: () => {}
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Tabs);
+export default Tabs;

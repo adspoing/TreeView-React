@@ -7,8 +7,13 @@ export default handleActions({
 		}
 	},
 	['FETCH_THING']:(state,action) => {
-		console.log(action.payload);
+		// console.log(action.payload);
+		return {
+			activeTab:state.activeTab,
+			tableBody:action.payload
+		}
 	}
 },{
-	activeTab:0
+	activeTab:0,
+	tableBody: []
 })
